@@ -16,7 +16,7 @@ XiiLangRecord {
 			Class.initClassTree(SynthDef);
 			Class.initClassTree(SynthDescLib);
 			// Adding Limiter as sometimes I was getting bad noises on overload
-			SynthDef.writeOnce("xii-diskout-" ++ i.asString, { arg in, bufNum=0, amp=1;
+			SynthDef.writeOnce(Platform.userAppSupportDir ++"/xii-diskout-" ++ i.asString, { arg in, bufNum=0, amp=1;
 				DiskOut.ar(bufNum, Limiter.ar(amp * InFeedback.ar(in, i), 0.99, 0.01) );
 			});
 		});
