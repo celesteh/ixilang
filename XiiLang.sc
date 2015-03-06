@@ -280,6 +280,7 @@ XiiLang {
 		win.bounds_(Rect(400,300, 1000, 600));
 		win.front;
 		doc = TextView(win.asView, Rect(10, 10, 980,580)).focus(true);
+		doc.enterInterpretsSelection = true;
 		//doc.setBackground(doccolor);
 		//doc.setStringColor(oncolor);
 		if(txt == false, { doc.setString("") });
@@ -290,7 +291,7 @@ XiiLang {
 			var linenr, string;
 			//keycode.postln;
 			// evaluating code (the next line will use .isAlt, when that is available
-			if((mod  == 524288) && ((keycode==124)||(keycode==123)||(keycode==125)||(keycode==126)||(keycode==111)||(keycode==113)||(keycode==114)||(keycode==116)), { // alt + left or up or right or down arrow keys
+			if(((mod  == 524288) || (mod == 2621440))&& ((keycode==124)||(keycode==123)||(keycode==125)||(keycode==126)||(keycode==111)||(keycode==113)||(keycode==114)||(keycode==116)), { // alt + left or up or right or down arrow keys
 				"eval".postln;
 				linenr = doc.string[..doc.selectionStart-1].split($\n).size;
 				//doc.selectLine(linenr);
@@ -3139,15 +3140,16 @@ XiiLang {
 	}
 
 	getMethodsList {
-		var doc;
-		doc = Document.new;
-		doc.name_("ixi lang lingo");
-		doc.promptToSave_(false);
-		doc.background_(Color.black);
-		doc.stringColor_(Color.green);
-		doc.bounds_(Rect(10, 500, 650, 800));
-		doc.font_(Font("Monaco",16));
-		doc.string_("
+		var doc, str;
+		//doc = Document.new;
+		//doc.name_("ixi lang lingo");
+		//doc.promptToSave_(false);
+		//doc.background_(Color.black);
+		//doc.stringColor_(Color.green);
+		//doc.bounds_(Rect(10, 500, 650, 800));
+		//doc.font_(Font("Monaco",16));
+		//doc.string_("
+		str = "
 	    --    ixi lang lingo	   --
 
  -----------  score modes  -----------
@@ -3231,19 +3233,22 @@ XiiLang {
  lowpass
  tremolo
  vibrato
-	");
+	"//);
+		;
+		str.postln;
 	}
 
 	getInstrumentsList {
 		var doc;
-		doc = Document.new;
-		doc.name_("ixi lang instruments");
-		doc.promptToSave_(false);
-		doc.background_(doccolor);
-		doc.stringColor_(offcolor);
-		doc.bounds_(Rect(10, 500, 500, 800));
-		doc.font_(Font("Monaco",16));
-		doc.string_("
+		//doc = Document.new;
+		//doc.name_("ixi lang instruments");
+		//doc.promptToSave_(false);
+		//doc.background_(doccolor);
+		//doc.stringColor_(offcolor);
+		//doc.bounds_(Rect(10, 500, 500, 800));
+		//doc.font_(Font("Monaco",16));
+		//doc.string_("
+		("
 	    --    ixi lang instruments    --
 
  ------  synthesis instruments  ------\n\n"++
@@ -3263,7 +3268,8 @@ ixiInstr.getXiiLangSynthesisSynthdefs // calling an XiiLangInstr instance
 ++
 
 ixiInstr.getSamplesSynthdefs
-	);
+	//);
+		).postln;
 	}
 
 	addixiMenu {
